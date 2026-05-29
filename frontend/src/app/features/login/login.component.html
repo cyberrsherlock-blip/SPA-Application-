@@ -1,0 +1,28 @@
+<div class="login-container" style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; font-family: sans-serif;">
+  <h2>SPA Secure Entry Portal</h2>
+  <form (ngSubmit)="onLogin()">
+    <div>
+      <label>User ID:</label>
+      <input type="text" [(ngModel)]="credentials.username" name="username" required style="width:100%; margin-bottom:10px; padding: 6px;">
+    </div>
+    <div>
+      <label>Password:</label>
+      <input type="password" [(ngModel)]="credentials.password" name="password" required style="width:100%; margin-bottom:10px; padding: 6px;">
+    </div>
+    <div>
+      <label>System Role:</label>
+      <select [(ngModel)]="credentials.role" name="role" style="width:100%; margin-bottom:15px; padding: 6px;">
+        <option value="General User">General User</option>
+        <option value="Admin">Admin</option>
+      </select>
+    </div>
+    <div>
+      <label>Simulate Network Delay (ms):</label>
+      <input type="number" [(ngModel)]="apiDelay" name="delay" style="width:100%; margin-bottom:15px; padding: 6px;">
+    </div>
+    <button type="submit" [disabled]="isLoading" style="width: 100%; padding: 10px; cursor: pointer;">
+      {{ isLoading ? 'Processing Async Request...' : 'Login' }}
+    </button>
+  </form>
+  <p *ngIf="errorMessage" style="color: red; margin-top: 10px;">{{ errorMessage }}</p>
+</div>
