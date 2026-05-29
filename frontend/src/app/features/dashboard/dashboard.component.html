@@ -1,0 +1,70 @@
+<div style="padding: 20px; font-family: sans-serif;">
+  <div style="display: flex; justify-content: space-between; background: #f4f4f4; padding: 15px; border-radius: 5px;">
+    <div>
+      <h3>Welcome, {{ currentUser?.name }}</h3>
+      <p>System Privileges Profile: <strong>{{ currentUser?.role }}</strong></p>
+    </div>
+    <button (click)="logout()" style="height: 40px; margin-top: 15px; padding: 0 15px; cursor: pointer;">Secure Exit</button>
+  </div>
+
+  <hr style="margin: 20px 0;">
+
+  <h3>User Records Table Data</h3>
+  <div style="margin-bottom: 15px;">
+    <label>Simulate Records Query Async Delay (ms): </label>
+    <input type="number" [(ngModel)]="recordDelay" style="width: 80px; padding: 4px;">
+    <button (click)="loadUserData()" style="margin-left: 10px; padding: 4px 10px; cursor: pointer;">Refetch Records Asynchronously</button>
+  </div>
+
+  <div *ngIf="loadingRecords" style="color: blue; font-weight: bold; margin-bottom: 15px;">⏳ Processing Async Call Strategy (Simulating Network Overhead)...</div>
+
+  <table *ngIf="!loadingRecords" border="1" cellpadding="10" style="width: 100%; border-collapse: collapse; text-align: left;">
+    <thead>
+      <tr style="background-color: #eaeaea;">
+        <th>Record ID</th>
+        <th>Associated User Scope</th>
+        <th>Encrypted Profile Details</th>
+        <th>System Clearance Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of records">
+        <td>{{ record.id }}</td>
+        <td>ID: {{ record.userId }}</td>
+        <td>{{ record.data }}</td>
+        <td><span style="color: green; font-weight: bold;">{{ record.status }}</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="currentUser?.role === 'Admin'" style="margin-top: 40px; border-top: 3px solid maroon; padding-top: 20px;">
+    <h2 style="color: maroon;">Admin Multi-Tenant Control View</h2>
+    
+    <div *ngIf="loadingUsers" style="color: maroon; font-weight: bold; margin-bottom: 15px;">⏳ Syncing Active Directory Databases...</div>
+    
+    <table *ngIf="!loadingUsers" border="1" cellpadding="10" style="width: 100%; border-collapse: collapse; text-align: left;">
+      <thead>
+        <tr style="background-color: #ffe6e6;">
+          <th>User ID</th>
+          <th>Handle</th>
+          <th>Full Legal Name</th>
+          <th>Assigned Infrastructure Role</th>
+          <th>Administrative Operations</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of allUsers">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <button [disabled]="user.id === currentUser.id" (click)="deleteUser(user.id)" style="color: red; cursor: pointer;">
+              Revoke Privileges
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
