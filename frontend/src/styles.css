@@ -1,0 +1,21 @@
+/* Global Application Styles */
+body {
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+/* Simulated Network Delay Loading Spinner Styling */
+.spinner {
+  padding: 12px;
+  background-color: #e6f7ff;
+  border: 1px solid #91d5ff;
+  border-radius: 4px;
+  color: #1890ff;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
