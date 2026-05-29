@@ -1,0 +1,18 @@
+# Node dependencies
+node_modules/
+dist/
+.env
+
+# Angular build outputs and cache
+.angular/
+/frontend/dist/
+/frontend/.angular/
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
