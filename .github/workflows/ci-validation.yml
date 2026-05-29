@@ -1,0 +1,57 @@
+name: Secure SPA Testing Strategy Matrix
+
+# Trigger workflow execution on pushes or open merge requests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  # Job 1: Build and Verify Backend Architecture
+  backend-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repository
+        uses: actions/checkout@v3
+
+      - name: Provision Node.js Runtime environment
+        uses: actions/setup-node@v3
+        with:
+          node-node-version: '16.x'
+          cache: 'npm'
+          cache-dependency-path: './backend/package.json'
+
+      - name: Install System Dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: Execute Backend Compilation Check
+        run: |
+          cd backend
+          npx tsc --noEmit
+
+  # Job 2: Build and Verify Frontend Architecture
+  frontend-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repository
+        uses: actions/checkout@v3
+
+      - name: Provision Node.js Runtime environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x' # Tailored validation platform matching Angular 12 dependencies
+          cache: 'npm'
+          cache-dependency-path: './frontend/package.json'
+
+      - name: Install Core Project Dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Validate Production Compilation Bundles
+        run: |
+          cd frontend
+          npx ng build --configuration production
