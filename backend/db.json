@@ -1,0 +1,12 @@
+{
+  "users": [
+    {"id": "1", "username": "admin", "password": "password123", "name": "System Admin", "role": "Admin"},
+    {"id": "2", "username": "user1", "password": "password123", "name": "John Doe", "role": "General User"},
+    {"id": "3", "username": "user2", "password": "password123", "name": "Jane Smith", "role": "General User"}
+  ],
+  "records": [
+    {"id": "r1", "userId": "2", "data": "John's Q1 Financial Report", "status": "Approved"},
+    {"id": "r2", "userId": "2", "data": "John's Project Timeline", "status": "Pending"},
+    {"id": "r3", "userId": "3", "data": "Jane's Medical Insurance Details", "status": "Active"}
+  ]
+}
