@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://github.com/cyberrsherlock-blip/SPA-Application-.git'
+  apiUrl: 'https://cyberrsherlock-blip.github.io/SPA-Application-/'
 };
